@@ -1,0 +1,26 @@
+Options -Indexes +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f       
+RewriteRule ^(.*)/(.*)/(.*)/(.*)/(.*)/(.*)$ ?mod=$1&sec=$2&item=$3&sc=$4&p=$5&v=$6
+
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f       
+RewriteRule ^(.*)/(.*)/(.*)/(.*)/(.*)$ ?mod=$1&sec=$2&item=$3&sc=$4&p=$5
+
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f       
+RewriteRule ^(.*)/(.*)/(.*)/(.*)$ ?mod=$1&sec=$2&item=$3&sc=$4
+
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f       
+RewriteRule ^(.*)/(.*)/(.*)$ ?mod=$1&sec=$2&item=$3
+
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^(.*)/(.*)$ ?mod=$1&sec=$2
+
+RewriteCond %{SCRIPT_FILENAME} !-d  
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^(.*)$ ?mod=$1
