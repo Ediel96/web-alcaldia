@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$host= "http://localhost/app-web/";
+$host= "http://localhost/web-alcaldia/";
 // include 'db/connection.php';
 ?>
 <!doctype html>
@@ -135,13 +135,26 @@ $host= "http://localhost/app-web/";
 
 
 		<!-- Examples -->
-		<script src="<?php echo $host;?>assets/javascripts/dashboard/examples.dashboard.js"></script>
+		<!-- <script src="<?php //echo $host;?>assets/javascripts/dashboard/examples.dashboard.js"></script>
 		<!-- Tables advance -->
-		<script src="<?php echo $host;?>assets/javascripts/tables/examples.datatables.default.js"></script>
-		<script src="<?php echo $host;?>assets/javascripts/tables/examples.datatables.row.with.details.js"></script>
-		<script src="<?php echo $host;?>assets/javascripts/tables/examples.datatables.tabletools.js"></script>		
-		<script src="<?php echo $host;?>assets/javascripts/ui-elements/examples.modals.js"></script>
-		<script>
+		<!-- <script src="<?php //echo $host;?>assets/javascripts/tables/examples.datatables.default.js"></script> -->
+		<!-- <script src="<?php //echo $host;?>assets/javascripts/tables/examples.datatables.row.with.details.js"></script> -->
+		<!-- <script src="<?php //echo $host;?>assets/javascripts/tables/examples.datatables.tabletools.js"></script>		 -->
+		<!-- <script src="<?php //echo $host;?>assets/javascripts/ui-elements/examples.modals.js"></script> --> -->
+
+
+		
+		<!-- <link rel="stylesheet" href="<?php //echo $host;?>kendor/assets/css/kendo.default-v2.min.css"></link>
+		<script src="<?php //echo $host;?>kendor/js/jquery-1.2.4.min.js"></script>
+		<script src="<?php //echo $host;?>kendor/js/kendo.all.min.js"></script> -->
+
+		<!-- <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.3.1118/styles/kendo.default-v2.min.css"/>
+    	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    	<script src="https://kendo.cdn.telerik.com/2020.3.1118/js/kendo.all.min.js"></script> -->
+    
+		
+		
+		<!-- <script>
 			$('#datatable-default').dataTable( {
 				"order": [],
 				"columnDefs": [ {
@@ -154,6 +167,9 @@ $host= "http://localhost/app-web/";
 					sortField: 'text'
 				});
 			});
-		</script>
+		</script> -->
+
+
+
 	</body>
 </html>
