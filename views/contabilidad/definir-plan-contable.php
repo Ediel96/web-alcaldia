@@ -52,7 +52,8 @@
 
 
 <script>
-  $("#treeList").kendoTreeList({
+
+$("#treeList").kendoTreeList({
     columns: [
       { field: "codigo" },
       { field: "descripcion" }
@@ -70,5 +71,7 @@
         { id: 4, parentId: null, codigo: 2, descripcion: "Comercio al por mayor y al por menor" }
       ]
     }
-  });
+  }
+);
+
 </script>

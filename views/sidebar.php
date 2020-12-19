@@ -135,7 +135,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="<?php echo $host; ?>contabilidad/definir-periodo-contable">
                                     Definir periodos contables
                                 </a>
                             </li>
