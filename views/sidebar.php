@@ -140,7 +140,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="<?php echo $host; ?>contabilidad/comprobantes-contables">
                                     Maestro de terceros
                                 </a>
                             </li>
