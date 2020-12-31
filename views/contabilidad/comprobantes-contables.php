@@ -1,13 +1,17 @@
 
         <h2>Comprobantes contables</h2>
 
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Agregando comporbante contable
+        </button>
+
         <div class="row">
             <div class="col-md-12">
-                <h2 class="pb-lg">Toggle</h2>
+       
                 <div class="toggle" data-plugin-toggle>
                     <p>Solo cierre</p>
                     <section class="toggle">
-                        <label>Curabitur eget leo at velit imperdiet vague iaculis vitaes?</label>
+                        <label>Ocultar criterios de </label>
                         <div class="toggle-content">
                             <form>
 
@@ -66,3 +70,93 @@
                 </div>
             </div>
         </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <h2 class="panel-title">Periodos Contable</h2>
+                    </header>
+                    <div class="panel-body">
+                        <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
+                            <div class="form-group mt-lg">
+                                <label class="col-sm-3 control-label">Nombre del periodo</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="name" class="form-control" placeholder="Type your name..." required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Subperiodos</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control form-control-sm">
+                                        <option>Anual</option>
+                                        <option>Semestral</option>
+                                        <option>Trimestral</option>
+                                        <option>Mesual</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Cantidad de periodos</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control form-control-sm">
+                                        <option>Anual</option>
+                                        <option>Semestral</option>
+                                        <option>Trimestral</option>
+                                        <option>Mesual</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Estado del periodo</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control form-control-sm">
+                                        <option>Bloqueado</option>
+                                        <option>Desbloqueado</option>
+                                        <option>Cierre del periodo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Fecha</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Fecha de contabilidad</label>
+                                <div class="col-sm-3">
+                                    <input type="url" name="url" class="form-control" placeholder="Type an URL...">
+                                </div>
+                                <label class="col-sm-2 control-label">Hasta</label>
+                                <div class="col-sm-4">
+                                    <input type="url" name="url" class="form-control" placeholder="Type an URL...">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Periodo </label>
+                                <div class="col-sm-9">
+                                    <select class="form-control form-control-sm">
+                                        <option>2020</option>
+                                        <option>2021</option>
+                                        <option>2022</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Crear</button>
+                    <button type="button" class="btn btn-primary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
