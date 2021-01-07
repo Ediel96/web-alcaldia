@@ -122,3 +122,21 @@ $app->delete('/clientes/{id}', function(Request $request, Response $response){
         echo '{"error" : {"text":'.$e->getMessage().'}';
     }
 });
+
+
+$app->post('/add', function ($request, $response, $args) {
+    $sql = "INSERT INTO dim.dim_city   (id_dim_country, city, city_status) VALUES ( :id_country, :city, '1');";
+    $db = getDB();
+    $stmt = $db->prepare($sql);
+    
+    $body = $request->getBody();
+    $form_data =$body;
+    $city=$form_data['city'];
+    $id_country=$form_data['id_country'];
+    $stmt->bindParam(':id_country', $id_country, PDO::PARAM_INT);
+    $stmt->bindParam(':city', $city);
+    $stmt->execute();
+    $id_city= $db->lastInsertId();
+    $db = null;
+    echo json_encode($id_city);
+    });
