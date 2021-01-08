@@ -1,9 +1,9 @@
 
 $(document).ready(function() {
 
-    getAll();
+    getAll();//<li class="editModal"><a href="#" class="fa fa-edit"></a></li>
  
-    function getAll() {
+     function getAll() {
         $.ajax({
         url: '../api1/public/define_accounting_periods',
         type: 'GET',
@@ -13,12 +13,19 @@ $(document).ready(function() {
                 let template = '';
                 elemens.forEach(elemen => {
                 template += `
-                    <tr>
-                    <td>#</td>
-                    <td>${elemen.actiond}</td>
-                    <td>${elemen.accounting_period}</td>
-                    <td>${elemen.since}</td>
-                    <td>${elemen.untild}</td>
+                    <tr taskid="${elemen.idp}">
+                        <td>${elemen.actiond}</td>
+                        <td>${elemen.accounting_period}</td>
+                        <td>${elemen.since}</td>
+                        <td>${elemen.untild}</td>
+                        <td taskid="${elemen.idp}">
+                            <button type="submit"  class="btn btn-primary task-edit" onclick="myEditModal(${elemen.idp})">
+                                Editar
+                            </button>
+                            <button type="submit"  class="btn btn-danger" onclick="myDeletModal(${elemen.idp})">
+                                Eliminar
+                            </button>
+                        </td>
                     </tr>
                         ` 
                 });
@@ -27,14 +34,13 @@ $(document).ready(function() {
             }
         });
     }
-    
 
     $('.submitButtonAdd').click(function(e) {
         e.preventDefault();
         const idp = $('#taskId').val();
         const data = {
-            actiond: $('#actiond').val(),
-            subperiod:  $('#subperiod').val(),
+            actiond : $('#actiond').val(),
+            subperiod :  $('#subperiod').val(),
             amountofperiod :$('#amountOfPeriod').val(),
             accounting_period: $('#periodtatus').val(),
             since : $('#datepickerOne').datepicker({ dateFormat: 'dd-mm-yy' }).val(),
@@ -51,12 +57,25 @@ $(document).ready(function() {
         });
     });
 
-    $('.submitButtonApdate').click(function(e) {
+    $('#submitButtonEdit').click(function(e) {
         e.preventDefault();
-        
+        const idp = $('#idpE').val();
+        const data = {
+            actiond : $('#actiondE').val(),
+            subperiod :  $('#subperiodE').val(),
+            amountofperiod :$('#amountOfPeriodE').val(),
+            accounting_period: $('#amountOfPeriodE').val(),
+            since : $('#datepickerOneE').val(),
+            until : $('#datepickerTwoE').val(),
+            idp: $('#idpE').val()
+        };
+        const url = `../api1/public/define_accounting_periods/${idp}`;
+        console.log(data, url);
+        $.post(url, data, (response) => {
+            console.log(response);
+            getAll();
+        });
     });
 
 
-
 });
-

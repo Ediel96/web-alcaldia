@@ -25,7 +25,7 @@ $app->get('/define_accounting_periods', function($request, $response, array $arg
 //agregar
 $app->post('/define_accounting_periods', function($request, $response, array $args){
 
-    $action = $request->getParam('action');
+    $action = $request->getParam('actiond');
     $subperiod = $request->getParam('subperiod');
     $amountofperiod = $request->getParam('amountofperiod');
     $accounting_period = $request->getParam('accounting_period');
@@ -41,12 +41,12 @@ $app->post('/define_accounting_periods', function($request, $response, array $ar
         $db = $db->conectDB();
         $result = $db->prepare($sql);
 
-        $result->bindParam(':actiond',$action);
-        $result->bindParam(':subperiod',$subperiod);
-        $result->bindParam(':amountofperiod',$amountofperiod);
-        $result->bindParam(':accounting_period',$accounting_period);
-        $result->bindParam(':since',$since);
-        $result->bindParam(':until',$until);
+        $result->bindParam(':actiond', $action);
+        $result->bindParam(':subperiod', $subperiod);
+        $result->bindParam(':amountofperiod', $amountofperiod);
+        $result->bindParam(':accounting_period', $accounting_period);
+        $result->bindParam(':since' ,$since);
+        $result->bindParam(':until' ,$until);
 
         $result->execute();
         echo json_encode("Datos guardados exitosamente");        
@@ -88,17 +88,17 @@ $app->post('/define_accounting_periods/{id}', function($request, $response, arra
 
     $id = $request->getAttribute('id');
 
-    $action = $request->getParam('action');
+    $action = $request->getParam('actiond');
     $subperiod = $request->getParam('subperiod');
     $amountofperiod = $request->getParam('amountofperiod');
     $accounting_period = $request->getParam('accounting_period');
     $since = $request->getParam('since');
-    $until = $request->getParam('until');
+    $until = $request->getParam('untild');
 
     $sql = "UPDATE accounting_schema.define_accounting_periods  
             SET 
             actiond = :action,
-            subperiod = :subperiod ,
+            subperiod = :subperiod,
             amountofperiod  = :amountofperiod,
             accounting_period = :accounting_period, 
             since = :since, 
@@ -111,14 +111,15 @@ $app->post('/define_accounting_periods/{id}', function($request, $response, arra
         $result = $db->prepare($sql);
 
         $result->bindParam(':action',$action);
-        $subperiod = $request->getParam('subperiod');
-        $amountofderiod = $request->getParam('amountofderiod');
+        $result->bindParam(':subperiod',$subperiod);
+        $result->bindParam(':amountofperiod',$amountofperiod);
         $result->bindParam(':accounting_period',$accounting_period);
         $result->bindParam(':since',$since);
         $result->bindParam(':until',$until);
 
         $result->execute();
-        echo json_encode("Datos guardados exitosamente");        
+
+        echo json_encode("Datos guardados exitosamente $sql");        
         
         $result = null;
         $db = null;
