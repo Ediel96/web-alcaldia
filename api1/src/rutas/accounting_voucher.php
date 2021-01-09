@@ -22,6 +22,28 @@ $app->get('/accounting_vouchers', function($request, $response, array $args){
     }
 });
 
+
+$app->get('/accounting_vouchers/{id}', function($request, $response, array $args){
+    $id = $request->getAttribute('id');
+    $sql = "select * from accounting_schema.accounting_vouchers WHERE id = $id;";
+    try{
+        $db = new db();
+        $db = $db->conectDB();
+        $result = $db->query($sql);
+        
+        if($result->rowCount() > 0){
+            $clientes = $result->fetchAll(PDO::FETCH_OBJ);
+            echo json_encode($clientes);
+        }else{
+            echo json_encode("No existen actividades ");
+        }
+        $result = null;
+        $db = null;
+    }catch(PDOException $e){
+        echo '{"error" : {"text":'.$e->getMessage().'}';
+    }
+});
+
 //agregar
 $app->post('/accounting_vouchers', function($request, $response, array $args){
 

@@ -1,86 +1,83 @@
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="vendor/select2/dist/js/select2.min.js"></script>
 
-        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <h2>Comprobantes contables</h2>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-        <link href="vendor/select2/dist/css/select2.min.css" rel="stylesheet" />
-        <script src="vendor/select2/dist/js/select2.min.js"></script>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Agregando comporbante contable
+    </button>
 
-        <h2>Comprobantes contables</h2>
+    <!-- <div class="row">
+        <div class="col-md-12">
+            <div class="toggle" data-plugin-toggle>
+                <p>Solo cierre</p>
+                <section class="toggle">
+                    <label>Ocultar criterios de </label>
+                    <div class="toggle-content">
+                        <form>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Agregando comporbante contable
-        </button>
+                            <button type="submit" class="btn btn-success">Buscar</button>
+                            <button type="submit" class="btn btn-primary">Limpiar filtro</button>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="toggle" data-plugin-toggle>
-                    <p>Solo cierre</p>
-                    <section class="toggle">
-                        <label>Ocultar criterios de </label>
-                        <div class="toggle-content">
-                            <form>
+                            <br>
 
-                                <button type="submit" class="btn btn-success">Buscar</button>
-                                <button type="submit" class="btn btn-primary">Limpiar filtro</button>
-
-                                <br>
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Tipo</label>
-                                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Fecha de elaboracion</label>
-                                        <div class="form-group">
-                                            
-                                            <select id="inputState" class="form-control">
-                                                <option selected>2020</option>
-                                                <option>2021</option>
-                                                <option>2022</option>
-                                                <option>2023</option>
-                                            </select>
-
-                                            <select id="inputState" class="form-control">
-                                                <option selected>Rango</option>
-                                                <option>Este mes</option>
-                                                <option>Este trimestre</option>
-                                                <option>Este semestre</option>
-                                                <option>Solo cierre</option>
-                                            </select>
-
-                                            <input type="password" class="form-control col-md-6" placeholder="Password">
-                                            <input type="password" class="form-control col-md-6" placeholder="Password">
-                                        </div>
-                                    </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Tipo</label>
+                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
                                 </div>
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Usuario</label>
-                                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Anulada</label>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Fecha de elaboracion</label>
+                                    <div class="form-group">
+                                        
                                         <select id="inputState" class="form-control">
-                                            <option selected>Si</option>
-                                            <option>No</option>
+                                            <option selected>2020</option>
+                                            <option>2021</option>
+                                            <option>2022</option>
+                                            <option>2023</option>
                                         </select>
+
+                                        <select id="inputState" class="form-control">
+                                            <option selected>Rango</option>
+                                            <option>Este mes</option>
+                                            <option>Este trimestre</option>
+                                            <option>Este semestre</option>
+                                            <option>Solo cierre</option>
+                                        </select>
+
+                                        <input type="password" class="form-control col-md-6" placeholder="Password">
+                                        <input type="password" class="form-control col-md-6" placeholder="Password">
                                     </div>
                                 </div>
-            
-                            </form>
-                        </div>
-                    </section>
-                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Usuario</label>
+                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Anulada</label>
+                                    <select id="inputState" class="form-control">
+                                        <option selected>Si</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                            </div>
+        
+                        </form>
+                    </div>
+                </section>
             </div>
         </div>
-
+    </div> -->
 
     <div class="row">
     <table class="table ">
@@ -223,7 +220,7 @@
                     <div class="panel-body">
                         <form id="demo-form" class="form-horizontal mb-lg" novalidate="novalidate">
                             <div class="form-group mt-lg">
-                                <input type="hidden" name="" id="idYpe">
+                                <input type="hidden" name="" id="idYpE">
 
                                 <label class="col-sm-3 control-label">Tipo</label>
                                 <div class="col-sm-9">
@@ -309,7 +306,7 @@
             </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary">Cancelar</button>
-                    <button type="button" class="btn btn-secondary" id="submitButtonAdd" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" id="submitButtonEdit" data-dismiss="modal">Aceptar</button>
                 </div>
             </div>
         </div>
@@ -322,40 +319,41 @@
     function myEditModal(id) {
         console.log(id)
         $("#ModalUpdate").modal("show");
-        $.ajax({
-        url: `../api1/public/define_accounting_periods/${id}`,
-        type: 'GET',
-        success: function(response) { 
-            if(!response.error) {
-                let elemens = JSON.parse(response);
-                elemens.forEach(elemen => {
-                    console.log(elemen);
-                    $('#typeE').val(elemen.type_account),
-                    $('#dateofelaborationE').val(elemen.dateofelaboration),
-                    $('#number_accountE').val(elemen.accounting_account),
-                    $('#accounting_accountE').val(elemen.accounting_account),
-                    $('#thirdE').val(elemen.third),
-                    $('#detailE').val(elemen.detail),
-                    $('#descriptionE').val(elemen.description),
-                    $('#cost_centerE').val(elemen.cost_center),
-                    $('#debitE').val(elemen.debit),
-                    $('#creditsE').val(elemen.credits),
-                    $('#idYpe').val(elemen.id),
-                })
-            }
+            $.ajax({
+            url: `../api1/public/accounting_vouchers/${id}`,
+            type: 'GET',
+            success: function(response) { 
+                if(!response.error) {
+                    let elemens = JSON.parse(response);
+                    elemens.forEach(elemen => {
+                        console.log(elemen)
+                        $('#typeE').val(elemen.type_account),
+                        $('#dateofelaborationE').val(elemen.dateofelaboration),
+                        $('#number_accountE').val(elemen.accounting_account),
+                        $('#accounting_accountE').val(elemen.accounting_account),
+                        $('#thirdE').val(elemen.third),
+                        $('#detailE').val(elemen.detail),
+                        $('#descriptionE').val(elemen.description),
+                        $('#cost_centerE').val(elemen.cost_center),
+                        $('#debitE').val(elemen.debit),
+                        $('#creditsE').val(elemen.credits),
+                        $('#idYpE').val(elemen.id)
+                        //$("option:selected").attr("selected", false);
+                    })
+                }
             }
         });
     }
 
-    //myDeletModal
-    function myDeletModal(id) {
-        $.ajax({
-        url: `../api1/public/accounting_vouchers/${id}`,
-        type: 'DELETE',
-        success: function(response) {
-            location.reload();
-            }
-        });
-    }
+//myDeletModal
+function myDeletModal(id) {
+    $.ajax({
+    url: `../api1/public/accounting_vouchers/${id}`,
+    type: 'DELETE',
+    success: function(response) {
+        location.reload();
+        }
+    });
+}
 
     </script>

@@ -64,9 +64,10 @@ $(document).ready(function() {
 
     $('#submitButtonEdit').click(function(e) {
         e.preventDefault();
-        const idp = $('#idpE').val();
+        const idp = $('#idYpE').val();
+        console.log(idp)
         const data = {
-            type_account: $('#typeE').val(),
+            type_account: $('#idYpE').val(),
             dateofelaboration: $('#dateofelaborationE').val(),
             number_account : $('#number_accountE').val(),
             accounting_account : $('#accounting_accountE').val(),
@@ -78,7 +79,7 @@ $(document).ready(function() {
             credits: $('#creditsE').val(),
             nombre: 'pepipo'
         };
-        const url = `../api1/public/define_accounting_periods/${idp}`;
+        const url = `../api1/public/accounting_vouchers/${idp}`;
         console.log(data, url);
         $.post(url, data, (response) => {
             console.log(response);
