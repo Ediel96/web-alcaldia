@@ -19,11 +19,13 @@
                     <th colspan="2">Fecha de contabilidad</th>
                 </tr>
                 <tr>
+                    
+                    <th>Tipo</th>
+                    <th>Numero</th>
+                    <th>Fecha de elaboracion</th>
+                    <th>Usuario</th>
+                    <th>Valor</th>
                     <th> </th>
-                    <th>Nombre del periodo</th>
-                    <th>Estado del periodo</th>
-                    <th>Desde</th>
-                    <th>Hasta</th>
                 </tr>
             </thead>
             <tbody id="tasks"></tbody>
@@ -215,7 +217,7 @@
 </div>
 
 
-<script src="../assets/services/contabilidad.js"></script>
+<script src="../assets/services/define_accounting_periods.js"></script>
 
 
 <script>

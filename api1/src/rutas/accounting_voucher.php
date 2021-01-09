@@ -108,9 +108,6 @@ $app->post('/accounting_vouchers/{id}', function($request, $response, array $arg
     $type_account = $request->getParam('type_account');
     $nombre = $request->getParam('nombre');
 
-    
-
-
     $sql = "UPDATE accounting_schema.accounting_vouchers 
             SET 
             accounting_account = :accounting_account,
@@ -124,10 +121,6 @@ $app->post('/accounting_vouchers/{id}', function($request, $response, array $arg
             type_account = :type_account, 
             nombre = :nombre 
             WHERE id = $id;";
-
-    // $sql = "UPDATE accounting_schema.accounting_vouchers
-    //         SET accounting_account='', third='', detail='', description='', cost_center='', debit=0, credits=0, dateofelaboration='', type_account=0, nombre=''
-    //         WHERE id=nextval('accounting_schema.accounting_vouchers_id_seq'::regclass);";
 
     try{
         $db = new db();
