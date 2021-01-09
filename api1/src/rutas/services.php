@@ -12,3 +12,4 @@ include '../src/rutas/plan_anual.php';
 include '../src/rutas/plan_accion.php';
 include '../src/rutas/activities_plan.php';
 include '../src/rutas/define_accounting_periods.php';
+include '../src/rutas/accounting_voucher.php';

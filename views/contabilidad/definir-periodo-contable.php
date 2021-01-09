@@ -255,7 +255,6 @@ function myEditModal(id) {
 }
 
 //myDeletModal
-
 function myDeletModal(id) {
     $.ajax({
     url: `../api1/public/define_accounting_periods/${id}`,
