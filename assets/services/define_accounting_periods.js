@@ -5,25 +5,25 @@ $(document).ready(function() {
  
      function getAll() {
         $.ajax({
-        url: '../api1/public/define_accounting_periods',
+        url: '../api1/public/define_accounting_periods/year',
         type: 'GET',
         success: function(response) {
             if(!response.error) {
                 let elemens = JSON.parse(response);
+                console.log(elemens);
                 let template = '';
                 elemens.forEach(elemen => {
                 template += `
-                    <tr taskid="${elemen.idp}">
-                        <td>${elemen.actiond}</td>
-                        <td>${elemen.accounting_period}</td>
-                        <td>${elemen.since}</td>
-                        <td>${elemen.untild}</td>
-                        <td taskid="${elemen.idp}">
-                            <button type="submit"  class="btn btn-primary task-edit" onclick="myEditModal(${elemen.idp})">
+                    <tr taskid="${elemen.year_id}">
+                        <td>${elemen.year_id}</td>
+                        <td>${elemen.year_date}</td>
+                        <td>${elemen.active_date}</td>
+                        <td taskid="${elemen.year_id}">
+                            <button type="submit"  class="btn btn-primary task-edit" onclick="myEditModal(${elemen.year_id})">
                                 Editar
                             </button>
-                            <button type="submit"  class="btn btn-danger" onclick="myDeletModal(${elemen.idp})">
-                                Eliminar
+                            <button type="submit"  class="btn btn-warning" onclick="myDeletModal(${elemen.year_id} , ${elemen.active})">
+                                Activar o Desactivar
                             </button>
                         </td>
                     </tr>
@@ -35,47 +35,32 @@ $(document).ready(function() {
         });
     }
 
-    $('.submitButtonAdd').click(function(e) {
-        e.preventDefault();
-        const idp = $('#taskId').val();
-        const data = {
-            actiond : $('#actiond').val(),
-            subperiod :  $('#subperiod').val(),
-            amountofperiod :$('#amountOfPeriod').val(),
-            accounting_period: $('#periodtatus').val(),
-            since : $('#datepickerOne').datepicker({ dateFormat: 'dd-mm-yy' }).val(),
-            until : $('#datepickerTwo').datepicker({ dateFormat: 'dd-mm-yy' }).val(),
-            //until : $('#datepickerTwo').val(),
-            idp: $('#taskId').val()
-        };
-        const url = "../api1/public/define_accounting_periods";
-        // const url = `../api1/public/define_accounting_periods/${idp}`;
-        console.log(data, url);
-        $.post(url, data, (response) => {
-            console.log(response);
-            getAll();
-        });
-    });
-
     $('#submitButtonEdit').click(function(e) {
         e.preventDefault();
-        const idp = $('#idpE').val();
-        const data = {
-            actiond : $('#actiondE').val(),
-            subperiod :  $('#subperiodE').val(),
-            amountofperiod :$('#amountOfPeriodE').val(),
-            accounting_period: $('#amountOfPeriodE').val(),
-            since : $('#datepickerOneE').val(),
-            until : $('#datepickerTwoE').val(),
-            idp: $('#idpE').val()
-        };
-        const url = `../api1/public/define_accounting_periods/${idp}`;
-        console.log(data, url);
-        $.post(url, data, (response) => {
-            console.log(response);
-            getAll();
-        });
+        var dataDate = [];
+        const idp = $('#idpY').val();
+        for (var i = 1; i <= 12; i++) {
+            const data = {
+                idY : idp, 
+                idM: i,
+                activem : $(`#date_${i}`).val(),
+                activemm : $(`#date_${i}`).prop('checked')
+            };
+            dataDate.push(data);
+            
+        }
+        dataDate.map(res => {
+            url = `../api1/public/define_accounting_periods/month/${res.idY}/${res.idM}`;
+            data = res;
+            $.post(url, data, (response) => {
+                console.log(response)
+            });
+        })
+        
     });
 
+    function funtionAdd(res){
+        console.log(res)
+    }
 
 });

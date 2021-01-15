@@ -1,9 +1,10 @@
 <?php
 //GET activities plan
-//ver todos
+
+//ver todos todo los años
 $app->get('/accounting_vouchers', function($request, $response, array $args){
     $id = $request->getAttribute('id');
-    $sql = "select * from accounting_schema.accounting_vouchers;";
+    $sql = "select * from accounting_schema.    ;";
     try{
         $db = new db();
         $db = $db->conectDB();

@@ -1,8 +1,9 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
-
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 
 <div>
     <div class="row">
@@ -20,11 +21,9 @@
                 </tr>
                 <tr>
                     
-                    <th>Tipo</th>
-                    <th>Numero</th>
-                    <th>Fecha de elaboracion</th>
-                    <th>Usuario</th>
-                    <th>Valor</th>
+                    <th>#</th>
+                    <th>Año</th>
+                    <th>Activo</th>
                     <th> </th>
                 </tr>
             </thead>
@@ -32,96 +31,6 @@
         </table>
     </div>
 
-    <!-- Modal Agregar  -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <div class="modal-body">
-                <section class="panel">
-                    <header class="panel-heading">
-                        <h2 class="panel-title">Agregar periodos Contable</h2>
-                    </header>
-                    <div class="panel-body">
-                        <form action=""  id="elemen-form" class="form-horizontal mb-lg" novalidate="novalidate">
-                            <input type="hidden" id="idp">
-                            <div class="form-group mt-lg">
-                                <label class="col-sm-3 control-label">Nombre del periodo</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="actiond"  class="form-control" placeholder="Nombre del periodo.." required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Subperiodos</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control form-control-sm" id="subperiod">
-                                        <option>Anual</option>
-                                        <option>Semestral</option>
-                                        <option>Trimestral</option>
-                                        <option>Mesual</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Cantidad de periodos</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control form-control-sm" id="amountOfPeriod">
-                                        <option>Anual</option>
-                                        <option>Semestral</option>
-                                        <option>Trimestral</option>
-                                        <option>Mesual</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Estado del periodo</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control form-control-sm" id="periodtatus">
-                                        <option>Bloqueado</option>
-                                        <option>Desbloqueado</option>
-                                        <option>Cierre del periodo</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Fecha</label>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Fecha de contabilidad</label>
-                                <div class="col-sm-3">
-                                    <input type="text" name="datapicker" class="form-control selector"  id="datepickerOne">
-                                </div>
-                                <label class="col-sm-2 control-label">Hasta</label>
-                                <div class="col-sm-4">
-                                    <input type="text" name="datapicker" class="form-control selector"  id="datepickerTwo">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Periodo </label>
-                                <div class="col-sm-9">
-                                    <select class="form-control form-control-sm">
-                                        <option>2020</option>
-                                        <option>2021</option>
-                                        <option>2022</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button  type="submit" class="btn btn-secondary submitButtonAdd" data-dismiss="modal" id="submitButtonAdd">Crear</button>
-                            </div>
-                        </form>
-                    </div>
-                </section>
-            </div>
-                
-            </div>
-        </div>
-    </div>
 
     <!-- Modal  Editar -->
     <div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="ModalUpdate" aria-hidden="true">
@@ -139,71 +48,57 @@
                     </header>
                     <div class="panel-body">
                         <form action=""  id="elemen-form" class="form-horizontal mb-lg" novalidate="novalidate">
-                            <input type="hidden" id="idpE">
-                            <div class="form-group mt-lg">
-                                <label class="col-sm-3 control-label">Nombre del periodo</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="actiondE"  class="form-control"  value="" required="">
-                                </div>
+                            <input type="hidden" id="idpY">
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_1">Enero</label>
+                                <input class="form-check-input" type="checkbox" id="date_1" value="option1" checked>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Subperiodos</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control form-control-sm" id="subperiodE">
-                                        <option value="Anual">Anual</option>
-                                        <option value="Semestral">Semestral</option>
-                                        <option value="Trimestral">Trimestral</option>
-                                        <option value="Mesual">Mesual</option>
-                                    </select>
-                                </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_2">Febrero</label>
+                                <input class="form-check-input" type="checkbox" id="date_2" value="option1" checked>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Cantidad de periodos</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control form-control-sm" id="amountOfPeriodE">
-                                        <option value="Anual">Anual</option>
-                                        <option value="Semestral">Semestral</option>
-                                        <option value="Trimestral">Trimestral</option>
-                                        <option value="Mesual">Mesual</option>
-                                    </select>
-                                </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_3">Marzo</label>
+                                <input class="form-check-input" type="checkbox" id="date_3" value="option1" checked>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Estado del periodo</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control form-control-sm" id="periodtatusE">
-                                        <option value="Bloqueado">Bloqueado</option>
-                                        <option value="Desbloqueado">Desbloqueado</option>
-                                        <option value="Cierre del periodo">Cierre del periodo</option>
-                                    </select>
-                                </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_4">Abril</label>
+                                <input class="form-check-input" type="checkbox" id="date_4" value="option1" checked>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Fecha</label>
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_5">Mayo</label>
+                                <input class="form-check-input" type="checkbox" id="date_5" value="option1" checked>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Fecha de contabilidad</label>
-                                <div class="col-sm-3">
-                                    <input type="text" name="datapicker" class="form-control selector"  id="datepickerOneE">
-                                </div>
-                                <label class="col-sm-2 control-label">Hasta</label>
-                                <div class="col-sm-4">
-                                    <input type="text" name="datapicker" class="form-control selector"  id="datepickerTwoE">
-                                </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_6">Junio</label>
+                                <input class="form-check-input" type="checkbox" id="date_6" value="option1" checked>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Periodo </label>
-                                <div class="col-sm-9">
-                                    <select id="periodoD" class="form-control form-control-sm">
-                                        <option value="2020">2020</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2022">2022</option>
-                                    </select>
-                                </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_7">Julio</label>
+                                <input class="form-check-input" type="checkbox" id="date_7" value="option1" checked>
                             </div>
-
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_8">Agosto</label>
+                                <input class="form-check-input" type="checkbox" id="date_8" value="option1" checked>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_9">Septiembre</label>
+                                <input class="form-check-input" type="checkbox" id="date_9" value="option1" checked>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_10">Octubre</label>
+                                <input class="form-check-input" type="checkbox" id="date_10" value="option1" checked>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_11">Noviembre</label>
+                                <input class="form-check-input" type="checkbox" id="date_11" value="option1" checked>
+                            </div>
+                            <div class="form-check">
+                                <label class="form-check-label" for="date_12">Diciembre</label>
+                                <input class="form-check-input" type="checkbox" id="date_12" value="option1" checked>
+                            </div>
                             <div class="modal-footer">
-                                <button  type="submit" class="btn btn-secondary" data-dismiss="modal" id="submitButtonEdit">Guardar</button>
+                                <button  type="submit" class="btn btn-secondary" id="submitButtonEdit">Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -234,22 +129,16 @@ function myEditModal(id) {
     console.log(id)
     $("#ModalUpdate").modal("show");
     $.ajax({
-    url: `../api1/public/define_accounting_periods/${id}`,
+    url: `../api1/public/define_accounting_periods/month/${id}`,
     type: 'GET',
     success: function(response) { 
         if(!response.error) {
             let elemens = JSON.parse(response);
             elemens.forEach(elemen => {
                 console.log(elemen);
-                $('#actiondE').val(elemen.actiond),
-                $(`#subperiodE  option[value=${elemen.subperiod}]`).attr("selected",true);
-                $(`#amountOfPeriodE option[value=${elemen.subperiod}]`).attr("selected",true);
-                // $('#amountOfPeriodE').val(elemen.amountofperiod),
-                $(`#amountOfPeriodE option[value=${elemen.amountofperiod}]`).attr("selected",true);
-                // $('#periodtatusE').val(elemen.amountofperiod),
-                $('#datepickerOneE').val(elemen.since),
-                $('#datepickerTwoE').val(elemen.untild),
-                $('#idpE').val(elemen.idp);
+                $(`#idpY`).val(elemen.yy_date);
+                $(`#date_${elemen.month_id}`).val(elemen.valueym);
+                $(`#date_${elemen.month_id}`).prop('checked', elemen.valueyymm);
             })
         }
         }
@@ -257,14 +146,32 @@ function myEditModal(id) {
 }
 
 //myDeletModal
-function myDeletModal(id) {
-    $.ajax({
-    url: `../api1/public/define_accounting_periods/${id}`,
-    type: 'DELETE',
-    success: function(response) {
-        location.reload();
+function myDeletModal(id , active) {
+
+    const url = `../api1/public/define_accounting_periods/year/${id}`;
+    const actived = active === 2 ? 1 : 2;
+    const activen = active === 2 ? "Activara" : "Inactivo";
+
+    const data = {
+        active : actived
+    }
+    Swal.fire({
+    title: '¿Estás seguro?',
+    text: `Se ${activen} el año`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log(url, active, actived);
+                $.post(url, data, (response) => {
+                    
+                });
+            
         }
-    });
+    })
 }
 
 </script>

@@ -1,9 +1,10 @@
 <?php
 //GET activities plan
 //ver todos
-$app->get('/define_accounting_periods', function($request, $response, array $args){
+$app->get('/define_accounting_periods/year', function($request, $response, array $args){
     $id = $request->getAttribute('id');
-    $sql = "select * from accounting_schema.define_accounting_periods;";
+    $sql = "select  ayd.year_id, ayd.year_date, acc.active_date, ayd.active from accounting_schema.accounting_year_date ayd 
+            inner join accounting_schema.accounting_active acc on acc.active_id  = ayd.active ";
     try{
         $db = new db();
         $db = $db->conectDB();
@@ -22,117 +23,42 @@ $app->get('/define_accounting_periods', function($request, $response, array $arg
     }
 });
 
-//agregar
-$app->post('/define_accounting_periods', function($request, $response, array $args){
 
-    $action = $request->getParam('actiond');
-    $subperiod = $request->getParam('subperiod');
-    $amountofperiod = $request->getParam('amountofperiod');
-    $accounting_period = $request->getParam('accounting_period');
-    $since = $request->getParam('since');
-    $until = $request->getParam('until');
+//Desabilitar 
+$app->post('/define_accounting_periods/year/{id}', function($request, $response, array $args){
+    $id = $request->getAttribute('id');
 
-    $sql = "INSERT INTO accounting_schema.define_accounting_periods
-            (actiond, accounting_period, since, untild, subperiod, amountofperiod) 
-            VALUES( :actiond, :accounting_period, :since, :until, :subperiod, :amountofperiod)";
+    $active = $request->getParam('active');
+
+
+    $sql = "UPDATE accounting_schema.accounting_year_date 
+            SET 
+            active = :active  
+            WHERE year_id = $id;";
 
     try{
         $db = new db();
         $db = $db->conectDB();
         $result = $db->prepare($sql);
-
-        $result->bindParam(':actiond', $action);
-        $result->bindParam(':subperiod', $subperiod);
-        $result->bindParam(':amountofperiod', $amountofperiod);
-        $result->bindParam(':accounting_period', $accounting_period);
-        $result->bindParam(':since' ,$since);
-        $result->bindParam(':until' ,$until);
-
+        $result->bindParam(':active', $active);
         $result->execute();
         echo json_encode("Datos guardados exitosamente");        
-        
         $result = null;
         $db = null;
+
     }catch(PDOException $e){
         echo '{"error" : {"text":'.$e->getMessage().'}';
     }
-
 });
 
-//Eliminar
-$app->delete('/define_accounting_periods/{id}', function($request, $response, array $args){
-
+//Ver todos los meses del año
+$app->get('/define_accounting_periods/month/{id}', function($request, $response, array $args){
     $id = $request->getAttribute('id');
-    $sql = "DELETE FROM accounting_schema.define_accounting_periods WHERE idp = $id";
-
-    try{
-        $db = new db();
-        $db = $db->conectDB();
-        $result = $db->prepare($sql);
-        $result->execute(); 
-        if($result->rowCount() >0 ){
-            echo json_encode("Dato eliminado correctamente");
-        }else{
-            echo json_encode("No existe el id enviado");
-        }
-        $result = null;
-        $db = null;
-    }catch(PDOException $e){
-        echo '{"error" : {"text":'.$e->getMessage().'}';
-    }
-
-});
-
-//Editar
-$app->post('/define_accounting_periods/{id}', function($request, $response, array $args){
-
-    $id = $request->getAttribute('id');
-
-    $action = $request->getParam('actiond');
-    $subperiod = $request->getParam('subperiod');
-    $amountofperiod = $request->getParam('amountofperiod');
-    $accounting_period = $request->getParam('accounting_period');
-    $since = $request->getParam('since');
-    $until = $request->getParam('untild');
-
-    $sql = "UPDATE accounting_schema.define_accounting_periods  
-            SET 
-            actiond = :action,
-            subperiod = :subperiod,
-            amountofperiod  = :amountofperiod,
-            accounting_period = :accounting_period, 
-            since = :since, 
-            untild = :until 
-            WHERE idp = $id;";
-
-    try{
-        $db = new db();
-        $db = $db->conectDB();
-        $result = $db->prepare($sql);
-
-        $result->bindParam(':action',$action);
-        $result->bindParam(':subperiod',$subperiod);
-        $result->bindParam(':amountofperiod',$amountofperiod);
-        $result->bindParam(':accounting_period',$accounting_period);
-        $result->bindParam(':since',$since);
-        $result->bindParam(':until',$until);
-
-        $result->execute();
-
-        echo json_encode("Datos guardados exitosamente $sql");        
-        
-        $result = null;
-        $db = null;
-    }catch(PDOException $e){
-        echo '{"error" : {"text":'.$e->getMessage().'}';
-    }
-
-});
-
-
-$app->get('/define_accounting_periods/{id}', function($request, $response, array $args){
-    $id = $request->getAttribute('id');
-    $sql = "select * from accounting_schema.define_accounting_periods WHERE idp = $id;";
+    
+    $sql = "select * from accounting_schema.accounting_monthandyear_date amd 
+        inner join accounting_schema.accounting_month_date amd2 on amd.mm_date = amd2.month_id
+        where amd.yy_date = $id;";
+    
     try{
         $db = new db();
         $db = $db->conectDB();
@@ -149,5 +75,36 @@ $app->get('/define_accounting_periods/{id}', function($request, $response, array
     }catch(PDOException $e){
         echo '{"error" : {"text":'.$e->getMessage().'}';
     }
+});
+
+//Guardar los cambios de mes año
+$app->post('/define_accounting_periods/month/{idy}/{idm}', function($request, $response, array $args){
+    $idy = $request->getAttribute('idy');
+    $idm = $request->getAttribute('idm');
+
+    $activemmyy = $request->getParam('activemm');
+    $activemy = $request->getParam('activem');
+    
+
+    $sql = "UPDATE accounting_schema.accounting_monthandyear_date
+            SET valueym = :activemy, valueyymm = :activemmyy
+            WHERE mm_date = $idm AND yy_date = $idy";
+
+    try{
+        $db = new db();
+        $db = $db->conectDB();
+        $result = $db->prepare($sql);
+        $result->bindParam(':activemy', $activemy);
+        $result->bindParam(':activemmyy', $activemmyy);
+
+        $result->execute();
+        echo json_encode("Datos guardados exitosamente, $activemmyy , $activemy , $idy , $idm");        
+        
+        $result = null;
+        $db = null;
+    }catch(PDOException $e){
+        echo '{"error" : {"text":'.$e->getMessage().'}';
+    }
+
 });
 

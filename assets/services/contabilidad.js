@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-    getAll();//<li class="editModal"><a href="#" class="fa fa-edit"></a></li>
+    getAll();
  
      function getAll() {
         $.ajax({
@@ -10,12 +10,13 @@ $(document).ready(function() {
         success: function(response) {
             if(!response.error) {
                 let elemens = JSON.parse(response);
+                console.log(elemens)
                 let template = '';
                 elemens.forEach(elemen => {
                 template += `
                     <tr taskid="${elemen.id}">
-                        <td>${elemen.type_account}</td>
                         <td>${elemen.nombre}</td>
+                        <td>${elemen.type_account}</td>
                         <td>${elemen.dateofelaboration}</td>
                         <td>${elemen.nombre}</td>
                         <td>${elemen.credits}</td>
@@ -87,5 +88,11 @@ $(document).ready(function() {
         });
     });
 
+    $('#myTable').DataTable({
+        bFilter: false, 
+        bInfo: false
+    });
 
+
+    $('select.form-select').select2();
 });
