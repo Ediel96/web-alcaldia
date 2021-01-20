@@ -5,6 +5,7 @@
     <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- Estilos de modal -->
     <style>
@@ -55,12 +56,12 @@
                 </div>
             </div>
     </div>
-
+        
     <?php include 'modals/comprobantes-contables-registrar.php';?>
     
     <script src="../assets/services/contabilidad.js"></script>
     <script>
-        $( "#dateofelaboration" ).datepicker({minDate: '0', dateFormat: 'yy-dd-mm'});
+        $( "#dateofelaboration" ).datepicker({minDate: '0', dateFormat: 'yy-mm-dd'});
 
     function myEditModal(id) {
         console.log(id)
@@ -101,7 +102,6 @@
             }
         });
     }
-
 
     function mainPlus(id) {
         alert("mainPlus")

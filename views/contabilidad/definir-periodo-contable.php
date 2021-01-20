@@ -7,10 +7,6 @@
 
 <div>
     <div class="row">
-        
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Agregando periodos contables
-        </button>
 
         <table class="table ">
             <thead>
@@ -162,12 +158,12 @@ function myDeletModal(id , active) {
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
+    confirmButtonText: 'Si, Seguro.'
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log(url, active, actived);
                 $.post(url, data, (response) => {
-                    
+                    location.reload();
                 });
             
         }

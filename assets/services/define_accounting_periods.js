@@ -47,7 +47,6 @@ $(document).ready(function() {
                 activemm : $(`#date_${i}`).prop('checked')
             };
             dataDate.push(data);
-            
         }
         dataDate.map(res => {
             url = `../api1/public/define_accounting_periods/month/${res.idY}/${res.idM}`;
@@ -58,9 +57,5 @@ $(document).ready(function() {
         })
         
     });
-
-    function funtionAdd(res){
-        console.log(res)
-    }
 
 });
