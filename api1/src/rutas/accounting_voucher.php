@@ -77,9 +77,11 @@ $app->get('/accounting_vouchers/accounting', function($request, $response, array
 //ver la relacion de la cuentas con lo terciarios
 $app->get('/accounting_vouchers/accounting/{id}', function($request, $response, array $args){
     $id = $request->getAttribute('id');
-    $sql = "select * from accounting_schema.accounting_voucherssub avb
-            inner join accounting_schema.accounting_vouchers avbs on avb.cont_vou_id = avbs.id 
-            where avbs.id = $id";
+    $sql = "select avb.sub_id ,sta.name as account_name,  tasb.name as accountsub_name, avb.cod_account_id, avb.description, avb.debit, avb.credit from accounting_schema.accounting_voucherssub avb
+                    inner join accounting_schema.accounting_vouchers avbs on avb.cont_vou_id = avbs.id 
+                    inner join accounting_schema.t_account sta  on sta.cod_account = avb.cod_account_id
+                    inner join accounting_schema.t_account_sub tasb on tasb.cod_account_sub = avb.cod_account_sub_id 
+                    where avbs.id =  $id";
     try{
         $db = new db();
         $db = $db->conectDB();
@@ -98,6 +100,29 @@ $app->get('/accounting_vouchers/accounting/{id}', function($request, $response, 
     }
 });
 
+
+$app->get('/accounting_vouchers/type/{id}', function($request, $response, array $args){
+    $id = $request->getAttribute('id');
+    $sql = "select av.id as id_cod, * from accounting_schema.accounting_vouchers av 
+            inner join accounting_schema.t_voucher_type tv on tv.id = typea
+            where av.id = $id";
+    try{
+        $db = new db();
+        $db = $db->conectDB();
+        $result = $db->query($sql);
+        
+        if($result->rowCount() > 0){
+            $clientes = $result->fetchAll(PDO::FETCH_OBJ);
+            echo json_encode($clientes);
+        }else{
+            echo json_encode("No existen actividades ");
+        }
+        $result = null;
+        $db = null;
+    }catch(PDOException $e){
+        echo '{"error" : {"text":'.$e->getMessage().'}';
+    }
+});
 
 //mostrar las cuentas tercerias
 $app->get('/accounting_vouchers/tree/{id_cont}', function($request, $response, array $args){
@@ -219,9 +244,6 @@ $app->post('/accounting_vouchers/count_sub', function($request, $response, array
         }
 });
 
-
-//
-
 //Eliminar
 $app->delete('/accounting_vouchers/{id}', function($request, $response, array $args){
 
@@ -251,30 +273,19 @@ $app->post('/accounting_vouchers/{id}', function($request, $response, array $arg
 
     $id = $request->getAttribute('id');
   
-    $accounting_account = $request->getParam('accounting_account');
-    $third = $request->getParam('third');
-    $detail = $request->getParam('detail');
-    $description = $request->getParam('description');
-    $cost_center = $request->getParam('cost_center');
-    $debit = $request->getParam('debit');
-    $credits = $request->getParam('credits');
     $dateofelaboration = $request->getParam('dateofelaboration');
-    $type_account = $request->getParam('type_account');
-    $nombre = $request->getParam('nombre');
+    $nameuser = $request->getParam('nameuser');
+    $active = $request->getParam('active');
+    $typea = $request->getParam('typea');
+    $val = $request->getParam('val');
 
-    $sql = "UPDATE accounting_schema.accounting_vouchers 
-            SET 
-            accounting_account = :accounting_account,
-            third = :third,
-            detail  = :detail,
-            description = :description, 
-            cost_center = :cost_center, 
-            debit = :debit, 
-            credits = :credits, 
-            dateofelaboration = :dateofelaboration, 
-            type_account = :type_account, 
-            nombre = :nombre 
-            WHERE id = $id;";
+    $sql = "UPDATE accounting_schema.accounting_vouchers
+            SET dateofelaboration = :dateofelaboration,
+            nameuser = :nameuser, 
+            active = :active, 
+            typea = :typea, 
+            val = :val
+            WHERE id= $id;";
 
     try{
         $db = new db();
@@ -282,19 +293,55 @@ $app->post('/accounting_vouchers/{id}', function($request, $response, array $arg
         $result = $db->prepare($sql);
 
 
-        $result->bindParam(':accounting_account', $accounting_account);
-        $result->bindParam(':third', $third);
-        $result->bindParam(':detail', $detail);
-        $result->bindParam(':description', $description);
-        $result->bindParam(':cost_center' ,$cost_center);
-        $result->bindParam(':debit' ,$debit);
-        $result->bindParam(':credits' ,$credits);
-        $result->bindParam(':dateofelaboration' ,$dateofelaboration);
-        $result->bindParam(':type_account' ,$type_account);
-        $result->bindParam(':nombre' ,$nombre);
+        $result->bindParam(':dateofelaboration', $dateofelaboration);
+        $result->bindParam(':nameuser', $nameuser);
+        $result->bindParam(':active', $active);
+        $result->bindParam(':typea', $typea);
+        $result->bindParam(':val', $val);
 
         $result->execute();
         echo json_encode("$sql");        
+        
+        $result = null;
+        $db = null;
+    }catch(PDOException $e){
+        echo '{"error" : {"text":'.$e->getMessage().'}';
+    }
+
+});
+
+$app->post('/accounting_vouchers/count_sub/{id}', function($request, $response, array $args){
+
+    $id = $request->getAttribute('id');
+
+    $cod_account_id = $request->getParam('cod_account_id');
+    $cod_account_sub_id = $request->getParam('cod_account_sub_id');
+    $description = $request->getParam('description');
+    $debit = $request->getParam('debit');
+    $credit = $request->getParam('credit');
+
+
+    $sql = "UPDATE accounting_schema.accounting_voucherssub
+            SET  cod_account_id = :cod_account_id, 
+            cod_account_sub_id = :cod_account_sub_id, 
+            description = :description, 
+            debit = :debit, 
+            credit = :credit
+            where sub_id  = $id;";
+
+    try{
+        $db = new db();
+        $db = $db->conectDB();
+        $result = $db->prepare($sql);
+
+        $result->bindParam(':cod_account_id', $cod_account_id);
+        $result->bindParam(':cod_account_sub_id', $cod_account_sub_id);
+        $result->bindParam(':description', $description);
+        $result->bindParam(':debit', $debit);
+        $result->bindParam(':credit' ,$credit);
+
+        $result->execute();
+        echo json_encode("cod_account_id: $cod_account_id, cod_account_sub_id: $cod_account_sub_id ,description: $description, debit: $debit,credit: $credit");        
         
         $result = null;
         $db = null;

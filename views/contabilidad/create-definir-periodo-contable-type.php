@@ -10,8 +10,22 @@
             <header class="panel-heading">
                 <h2 class="panel-title">Comprobante contable</h2>
             </header>
-
-            <div class="panel-body table-responsive"></div>
+            <div class="col-md-12 text-right">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Editar comporbante contable
+                </button>
+            </div>
+            <div class="panel-body table-responsive">
+                <div class="col" id="date-cont">
+                    Fecha: 
+                </div>
+                <div class="col" id="name-cont">
+                    Nombre: 
+                </div>
+                <div class="col" id="code-cont">
+                    Codigo:
+                </div>
+            </div>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <table class="table table-striped" id="myTable">
@@ -25,15 +39,7 @@
                                 <th>Credito</th>
                             </tr>
                         </thead>
-                        <tbody id="tasks">
-                            <tr>
-                                <th>1</th>
-                                <th>11051001 - Cajas menores</th>
-                                <th> ACH Colombia S.A. </th>
-                                <th>Cajas menoresds</th>
-                                <th>200</th>
-                                <th>0</th>
-                            </tr>
+                        <tbody id="elements">
                         </tbody>
                     </table>
                 </div>
@@ -41,5 +47,7 @@
         </div>
     </div>
 </div>
+
+<?php include 'modals/create-definir-periodo-contable-type.php';?>
 
 <script src="../assets/services/contabilidad_type.js"></script>

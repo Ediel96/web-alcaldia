@@ -1,7 +1,7 @@
 
     <!-- Modal Agregar-->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="width: 86vw;">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -46,6 +46,7 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">1</th>
+                                        <input type="hidden" name="" id="sub_id_1">
                                         <td>
                                             <select class="form-control form-select select_accountingId " id="slect_acuu_1" onclick="selectCount(1);">
 
@@ -70,6 +71,7 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">2</th>
+                                        <input type="hidden" name="" id="sub_id_2">
                                         <td>
                                             <select class="form-control form-select select_accountingId"  id="slect_acuu_2" onclick="selectCount(2);">
 
@@ -110,11 +112,6 @@
 
     <script>
 
-        $( "#select_typeA" ).change(function() {
-            const cod = $('#select_typeA').val();
-            $('#type_numbe').val(cod)
-        });
-
         $('#cputAdd').click(function(e) { 
             var dataForm = [];
             var datenow = Date.now()
@@ -125,6 +122,7 @@
 
             for (var i = 1; i <= 2; i++) {
                 dta={
+                    id :  $(`#sub_id_${i}`).val(),
                     cod_account_id: $(`#slect_acuu_${i}`).val(),
                     cod_account_sub_id: $(`#slect_terce_${i}`).val(),
                     description: $(`#description_occunt_${i}`).val(),
@@ -140,29 +138,31 @@
                 debitsum += parseFloat(elemento.debit);     
             });
             
-            var data ={
-                type: $('#select_typeA').val(),
-                date: $('#dateofelaboration ').val(),
+            var data = {
+                id_subCont: $('#type_numbe').val(),
+                typea: $('#select_typeA').val(),
+                dateofelaboration: $('#dateofelaboration ').val(),
                 datenow: datenow,
                 nameuser: "Admin",
+                active: true,
                 number : $('#type_numbe').val(),
                 val: debitsum
             }
 
+            console.log(data);
+            console.log(dataForm);
+
             if (creditsum === debitsum){
 
-                const url = `../api1/public/accounting_vouchers/count`;
+                const url = `../api1/public/accounting_vouchers/${data.id_subCont}`;
+                console.log(url)
 
                 $.post(url, data, (response) => {
                     const elems =  JSON.parse(response)
+                    console.log(elems);
 
-                    elems.forEach( elem => {
-                        const dataid = {id_contu : elem.id}
-                        id_acount = dataid
-                    });
-
-                    const urll = `../api1/public/accounting_vouchers/count_sub`;
                     dataForm.forEach( elemento => {
+                        const urll = `../api1/public/accounting_vouchers/count_sub/${elemento.id}`;
                         const elemen = Object.assign(elemento, id_acount)
                         $.post(urll, elemen, (response) => {
                             console.log(response)
@@ -170,8 +170,6 @@
                     });
 
                 });
-
-                // console.log(id_acount,"es el id")
 
             }else{
                 Swal.fire({

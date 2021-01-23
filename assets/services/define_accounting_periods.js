@@ -2,8 +2,8 @@
 $(document).ready(function() {
 
     getAll();//<li class="editModal"><a href="#" class="fa fa-edit"></a></li>
- 
-     function getAll() {
+
+    function getAll() {
         $.ajax({
         url: '../api1/public/define_accounting_periods/year',
         type: 'GET',

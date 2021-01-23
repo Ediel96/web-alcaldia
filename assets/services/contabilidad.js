@@ -15,10 +15,11 @@ $(document).ready(function() {
                 if(!response.error) {
                     let elemens = JSON.parse(response);
                     let template = '';
+                    console.log(elemens)
                     elemens.forEach(elemen => {
                     template += `
-                        <tr taskid="${elemen.id}">
-                            <td> <a href="create-definir-periodo-contable-type" style="cursor: pointer;">${elemen.cod}</a></td>
+                        <tr taskid="${elemen.id_cod}">
+                            <td> <a href="create-definir-periodo-contable-type?idCount=${elemen.id_cod}" style="cursor: pointer;">${elemen.cod}</a></td>
                             <td>${elemen.description}</td>
                             <td>${elemen.dateofelaboration}</td>
                             <td>${elemen.nameuser}</td>
