@@ -7,24 +7,27 @@
 
 <div>
     <div class="row">
-
-        <table class="table ">
-            <thead>
-                <tr>
-                    <th>Acciones</th>
-                    <th colspan="2">Periodo contable general</th>
-                    <th colspan="2">Fecha de contabilidad</th>
-                </tr>
-                <tr>
-                    
-                    <th>#</th>
-                    <th>Año</th>
-                    <th>Activo</th>
-                    <th> </th>
-                </tr>
-            </thead>
-            <tbody id="tasks"></tbody>
-        </table>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Acciones</th>
+                            <th colspan="2">Periodo contable general</th>
+                            <th colspan="2">Fecha de contabilidad</th>
+                        </tr>
+                        <tr>
+                            
+                            <th>#</th>
+                            <th>Año</th>
+                            <th>Activo</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tasks"></tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
 
@@ -37,70 +40,71 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            <div class="modal-body">
-                <section class="panel">
-                    <header class="panel-heading">
-                        <h2 class="panel-title">Editar periodos Contable</h2>
-                    </header>
-                    <div class="panel-body">
-                        <form action=""  id="elemen-form" class="form-horizontal mb-lg" novalidate="novalidate">
-                            <input type="hidden" id="idpY">
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_1">Enero</label>
-                                <input class="form-check-input" type="checkbox" id="date_1" value="option1" checked>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_2">Febrero</label>
-                                <input class="form-check-input" type="checkbox" id="date_2" value="option1" checked>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_3">Marzo</label>
-                                <input class="form-check-input" type="checkbox" id="date_3" value="option1" checked>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_4">Abril</label>
-                                <input class="form-check-input" type="checkbox" id="date_4" value="option1" checked>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_5">Mayo</label>
-                                <input class="form-check-input" type="checkbox" id="date_5" value="option1" checked>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_6">Junio</label>
-                                <input class="form-check-input" type="checkbox" id="date_6" value="option1" checked>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_7">Julio</label>
-                                <input class="form-check-input" type="checkbox" id="date_7" value="option1" checked>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_8">Agosto</label>
-                                <input class="form-check-input" type="checkbox" id="date_8" value="option1" checked>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_9">Septiembre</label>
-                                <input class="form-check-input" type="checkbox" id="date_9" value="option1" checked>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_10">Octubre</label>
-                                <input class="form-check-input" type="checkbox" id="date_10" value="option1" checked>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_11">Noviembre</label>
-                                <input class="form-check-input" type="checkbox" id="date_11" value="option1" checked>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="date_12">Diciembre</label>
-                                <input class="form-check-input" type="checkbox" id="date_12" value="option1" checked>
-                            </div>
-                            <div class="modal-footer">
-                                <button  type="submit" class="btn btn-secondary" id="submitButtonEdit">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                </section>
-            </div>
-                
+
+                <div class="modal-body">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h2 class="panel-title">Editar periodos Contable</h2>
+                        </header>
+                        <div class="panel-body">
+                            <form action=""  id="elemen-form" class="form-horizontal mb-lg" novalidate="novalidate">
+                                <input type="hidden" id="idpY">
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_1">Enero</label>
+                                    <input class="form-check-input" type="checkbox" id="date_1" value="option1" checked>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_2">Febrero</label>
+                                    <input class="form-check-input" type="checkbox" id="date_2" value="option1" checked>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_3">Marzo</label>
+                                    <input class="form-check-input" type="checkbox" id="date_3" value="option1" checked>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_4">Abril</label>
+                                    <input class="form-check-input" type="checkbox" id="date_4" value="option1" checked>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_5">Mayo</label>
+                                    <input class="form-check-input" type="checkbox" id="date_5" value="option1" checked>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_6">Junio</label>
+                                    <input class="form-check-input" type="checkbox" id="date_6" value="option1" checked>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_7">Julio</label>
+                                    <input class="form-check-input" type="checkbox" id="date_7" value="option1" checked>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_8">Agosto</label>
+                                    <input class="form-check-input" type="checkbox" id="date_8" value="option1" checked>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_9">Septiembre</label>
+                                    <input class="form-check-input" type="checkbox" id="date_9" value="option1" checked>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_10">Octubre</label>
+                                    <input class="form-check-input" type="checkbox" id="date_10" value="option1" checked>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_11">Noviembre</label>
+                                    <input class="form-check-input" type="checkbox" id="date_11" value="option1" checked>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label" for="date_12">Diciembre</label>
+                                    <input class="form-check-input" type="checkbox" id="date_12" value="option1" checked>
+                                </div>
+                                <div class="modal-footer">
+                                    <button  type="submit" class="btn btn-secondary" id="submitButtonEdit">Guardar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+                    
             </div>
         </div>
     </div>

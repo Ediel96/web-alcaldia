@@ -1,7 +1,5 @@
 <div class="row">
-           
-                <form>
-                  
+            <form>
                 <div class="col-md-12">
                 
                     <div class="form-row">
@@ -22,7 +20,6 @@
                             </div>
                         </div>
                     </div>
-       
                 </div>
 
                 <div class="form-row col-md-6">

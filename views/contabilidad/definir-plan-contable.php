@@ -60,7 +60,7 @@ $("#treeList").kendoTreeList({
         { field: "descripcion" }
     ],
     dataSource: {
-      data: [
+        data: [
             { id: 1, parentId: null, codigo: 1, descripcion: "activo" },
             { id: 2, parentId: 1, codigo: 1, descripcion: "Efectivo y equivalentes de efectivo" },
             { id: 3, parentId: 2, codigo: 1, descripcion: "Inversiones en asociadas" },
@@ -72,7 +72,6 @@ $("#treeList").kendoTreeList({
             { id: 4, parentId: null, codigo: 2, descripcion: "Comercio al por mayor y al por menor" }
         ]
     }
-  }
-);
+});
 
 </script>
